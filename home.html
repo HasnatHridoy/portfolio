@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hasnat Ahmed | Portfolio</title>
+  <meta name="description" content="Hasnat Ahmed - Web Developer & UX Enthusiast" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: linear-gradient(180deg, rgb(26, 26, 32) 0%, rgba(10, 10, 14, 1) 100%);
+      --text-primary: #fff;
+      --text-muted: #a0a0a0;
+      --glass-bg: rgba(53, 53, 53, 0.088);
+      --glass-border: rgba(255, 255, 255, 0.1);
+      --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.432);
+      --accent: #4A90E2;
+      --accent-hover: #6aabf7;
+      --scrollbar-track: rgba(255, 255, 255, 0.05);
+      --scrollbar-thumb: rgba(255, 255, 255, 0.2);
+      --scrollbar-thumb-hover: rgba(255, 255, 255, 0.4);
+      --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Code', 'Fira Code', monospace;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100dvh;
+      padding: 50px 20px;
+      line-height: 1.7;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+    }
+
+    body,
+    h1,
+    h2,
+    h3,
+    button,
+    input {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      background:
+        radial-gradient(circle closest-side at 50% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 40%),
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      background-blend-mode: screen;
+    }
+
+    .glass-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 15px;
+      box-shadow: var(--glass-shadow);
+      backdrop-filter: blur(3px);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      overflow: hidden;
+    }
+
+    .glass-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.45);
+    }
+
+    .portfolio-container {
+      width: min(90%, 1000px);
+      margin-left: auto;
+      margin-right: auto;
+      display: grid;
+      gap: 24px;
+      z-index: 5;
+      position: relative;
+    }
+
+    .profile-card {
+      display: flex;
+      align-items: center;
+      padding: 32px;
+    }
+
+    .profile-info {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      width: 100%;
+    }
+
+    .profile-picture {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      flex-shrink: 0;
+    }
+
+    .profile-text h1 {
+      font-size: clamp(1.8rem, 4vw, 2.4rem);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .profile-text p {
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      font-size: 1rem;
+    }
+
+    .contact-btn {
+      background: rgba(255, 255, 255, 0.95);
+      color: #0d0d0d;
+      border: 1px solid rgba(13, 13, 13, 0.06);
+      padding: 10px 24px;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+      font-size: 0.95rem;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+    }
+
+    .contact-btn:hover,
+    .contact-btn:focus {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5);
+      background: rgba(255, 255, 255, 0.98);
+      color: #070707;
+      outline: none;
+    }
+
+    .contact-btn:active {
+      transform: translateY(0);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+    }
+
+    .contact-btn:focus-visible {
+      outline: 2px solid rgba(13, 13, 13, 0.08);
+      outline-offset: 3px;
+    }
+
+    .content-card {
+      overflow: visible;
+      min-height: 620px;
+    }
+
+    .nav {
+      padding: 18px 24px;
+      background: transparent;
+    }
+
+    .nav-list {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      list-style: none;
+      overflow-x: auto;
+      scrollbar-width: none;
+      padding-bottom: 8px;
+    }
+
+    .nav-list::-webkit-scrollbar {
+      display: none;
+    }
+
+    .nav-item {
+      position: relative;
+      color: #8e8e8e;
+      font-size: 1.05rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: color 0.3s ease, font-size 0.2s ease;
+      white-space: nowrap;
+      padding: 8px 4px;
+    }
+
+    .nav-item:hover,
+    .nav-item:focus-visible {
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .nav-item.active {
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.25rem;
+    }
+
+    .nav-item.active::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 36px;
+      height: 4px;
+      background: #d5d5d5;
+      border-radius: 10px;
+    }
+
+    .nav-item[aria-selected="true"] {
+      outline: none;
+    }
+
+    .content-display {
+      padding: 32px;
+      max-height: 510px;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+    }
+
+    .content-display::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .content-display::-webkit-scrollbar-track {
+      background: var(--scrollbar-track);
+      border-radius: 10px;
+    }
+
+    .content-display::-webkit-scrollbar-thumb {
+      background: var(--scrollbar-thumb);
+      border-radius: 10px;
+    }
+
+    .content-display::-webkit-scrollbar-thumb:hover {
+      background: var(--scrollbar-thumb-hover);
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      margin-bottom: 24px;
+      font-weight: 700;
+    }
+
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.4s ease forwards;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-top: 20px;
+    }
+
+    .project-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .project-image {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      background: #333;
+    }
+
+    .project-info {
+      padding: 20px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .project-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .project-description {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+
+    .project-buttons {
+      display: flex;
+      gap: 12px;
+      margin-top: auto;
+      flex-wrap: wrap;
+    }
+
+    .btn-github {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      background: transparent;
+      border: 1.5px solid rgba(255, 255, 255, 0.4);
+      border-radius: 50px;
+      color: white;
+      font-size: 0.92rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .btn-github:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: white;
+      transform: translateY(-2px);
+    }
+
+    .btn-demo {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 20px;
+      background: white;
+      color: #0d0d0d;
+      border: none;
+      border-radius: 50px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .btn-demo:hover {
+      background: rgba(255, 255, 255, 0.9);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn-github svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
+    @media (max-width: 992px) {
+      .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .contributions-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-top: 20px;
+    }
+
+    .contribution-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease;
+    }
+
+    .contribution-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .contribution-image {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      background: #333;
+    }
+
+    .contribution-info {
+      padding: 20px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .contribution-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .contribution-description {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+
+    .contribution-buttons {
+      display: flex;
+      gap: 12px;
+      margin-top: auto;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 992px) {
+      .contributions-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .contributions-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .education-content-wrapper {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 32px;
+      
+      backdrop-filter: blur(8px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    @media (max-width: 768px) {
+      .education-content-wrapper {
+        padding: 24px;
+        border-radius: 12px;
+      }
+    }
+
+    .education-timeline {
+      position: relative;
+      padding-left: 40px;
+      margin-top: 32px;
+    }
+
+    .education-timeline::before {
+      content: '';
+      position: absolute;
+      left: 16px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .education-entry {
+      position: relative;
+      margin-bottom: 64px;
+    }
+
+    .education-entry:last-child {
+      margin-bottom: 0;
+    }
+
+    .education-entry::before {
+      content: '';
+      position: absolute;
+      left: -28px;
+      top: 20px;
+      width: 12px;
+      height: 12px;
+      background: #fff;
+      border-radius: 50%;
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
+      z-index: 1;
+    }
+
+    .education-year {
+      display: block;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #fff;
+      background: rgba(255, 255, 255, 0.15);
+      padding: 10px 18px;
+      border-radius: 30px;
+      width: fit-content;
+      margin-bottom: 16px;
+      backdrop-filter: blur(4px);
+    }
+
+    .education-degree {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #f0f0f0;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .education-institution {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      .education-timeline {
+        padding-left: 30px;
+      }
+
+      .education-entry::before {
+        left: -23px;
+      }
+
+      .education-degree {
+        font-size: 1.4rem;
+      }
+    }
+
+    .content-placeholder {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 24px;
+      border-radius: 12px;
+      line-height: 1.7;
+      color: #ccc;
+    }
+
+    .content-placeholder-abm {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 24px;
+      border-radius: 12px;
+      line-height: 1.7;
+      color: #ccc;
+      font-size: 1.2rem;
+      min-height: 380px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    #particles {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 30px 16px;
+      }
+
+      .profile-card {
+        padding: 24px;
+      }
+
+      .profile-info {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .profile-picture {
+        width: 90px;
+        height: 90px;
+      }
+
+      .content-card {
+        min-height: 500px;
+      }
+
+      .content-display {
+        max-height: 450px;
+        padding: 24px;
+      }
+
+      .nav-list {
+        gap: 24px;
+        justify-content: flex-start;
+        padding: 0 16px 8px;
+      }
+
+      .nav-item.active {
+        font-size: 1.15rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav-list {
+        gap: 20px;
+      }
+
+      .nav-item {
+        font-size: 0.95rem;
+      }
+
+      .nav-item.active {
+        font-size: 1.1rem;
+      }
+    }
+
+    .contact-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 50;
+
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .contact-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .contact-modal {
+      background: rgba(36, 36, 36, 0.9);;
+      border-radius: 20px;
+      padding: 32px 36px;
+      width: min(90%, 420px);
+      color: #fff;
+      position: relative;
+
+      transform: scale(0.96);
+      opacity: 0;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .contact-overlay.active .contact-modal {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    .contact-close {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
+
+    .contact-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 28px;
+    }
+
+    .contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .contact-icon {
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  width: 20px; 
+  height: 20px;
+  
+  flex-shrink: 0;
+}
+
+.contact-icon * {
+  
+  width: 18px;
+  height: 18px;
+  color: #e5e5e5;
+  fill: currentColor;
+  display: block;
+}
+
+.contact-text {
+  color: #e5e5e5;
+  font-size: 0.95rem;
+  user-select: text;
+  text-decoration: none;
+}
+
+.contact-socials {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.contact-socials a {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  
+  background: rgba(255, 255, 255, 0.973);
+  border: 1px solid rgba(255, 255, 255, 0.15); 
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  color: #0d0d0d;
+  
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.contact-socials a * {
+  width: 22px;
+  height: 22px;
+  display: block;
+
+  
+}
+
+
+.contact-socials a:hover {
+  transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  opacity: 1;
+}
+  </style>
+</head>
+
+
+
+<body>
+  <div class="full-page-blur" aria-hidden="true"></div>
+  <canvas id="particles" aria-hidden="true"></canvas>
+
+  <main class="portfolio-container">
+    <section class="glass-card profile-card" aria-labelledby="profile-name">
+      <div class="profile-info">
+        <img src="profile_img.jpg" alt="Profile Image" class="profile-picture">
+        <div class="profile-text">
+          <h1 id="profile-name">Abul Hasnat</h1>
+          <p>AI Developer | Computer Vision & NLP | Building Scalable Deep Learning Solutions</p>
+          <button class="contact-btn" aria-label="Contact Hasnat Ahmed">Contact Me</button>
+        </div>
+      </div>
+      
+    </section>
+
+<div class="contact-overlay" id="contactOverlay">
+  <div class="contact-modal" role="dialog" aria-modal="true">
+    <button class="contact-close" id="contactClose">×</button>
+
+    <h2 class="contact-title">Get in Touch</h2>
+
+    <div class="contact-list">
+      <div class="contact-row">
+        <span class="contact-icon">
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M12 2c-4.1 0-7 3.1-7 7 0 5.3 7 13 7 13s7-7.7 7-13c0-3.9-2.9-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/>
+  </svg>
+</span>
+
+        <span class="contact-text">Dakshinkhan, Dhaka, Bangladesh</span>
+      </div>
+
+      <div class="contact-row">
+        <span class="contact-icon">
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.5.6 3.9.6.6 0 1 .4 1 1V21c0 .6-.4 1-1 1C10.3 22 2 13.7 2 3c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.4.2 2.7.6 3.9.1.4 0 .8-.3 1.1l-2.2 2.2z"/>
+  </svg>
+</span>
+
+        <span class="contact-text">+880 1310723027</span>
+      </div>
+
+      <div class="contact-row">
+        <span class="contact-icon">
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/>
+  </svg>
+</span>
+
+        <a class="contact-text" href="mailto:abulhasnathridoy@gmail.com">
+          abulhasnathridoy@gmail.com
+        </a>
+      </div>
+    </div>
+
+    <div class="contact-socials">
+      <a href="https://www.facebook.com/ahhridoy47" aria-label="Facebook">
+  <svg viewBox="0 0 24 24">
+    <path d="M22 12a10 10 0 1 0-11.6 9.9v-7H8v-3h2.4V9.6c0-2.4 1.4-3.7 3.6-3.7 1 0 2 .2 2 .2v2.2h-1.1c-1.1 0-1.4.7-1.4 1.4V12H16l-.4 3h-2.6v7A10 10 0 0 0 22 12z"/>
+  </svg>
+</a>
+
+      <a href="https://www.linkedin.com/in/abul-hasnat-hridoy/" aria-label="LinkedIn">
+  <svg viewBox="0 0 24 24">
+    <path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3V9zm7 0h3.8v1.7h.1c.5-.9 1.8-1.9 3.7-1.9 4 0 4.7 2.6 4.7 6v6.2h-4v-5.5c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.6h-4V9z"/>
+  </svg>
+</a>
+
+      <a href="https://x.com/hridoyez" aria-label="Twitter">
+  <svg viewBox="0 0 24 24">
+    <path d="M18.3 2H21l-6.5 7.4L22 22h-6.2l-4.8-6.2L5.5 22H3l7-8L2 2h6.3l4.4 5.7L18.3 2z"/>
+  </svg>
+</a>
+
+      <a href="https://github.com/HasnatHridoy" aria-label="GitHub">
+    <svg viewBox="0 0 24 24">
+        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.6.111.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.334-1.752-1.334-1.752-1.09-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.835 2.809 1.305 3.493.998.108-.77.42-.1.973-1.296-3.374-.38-6.91-1.684-6.91-4.706 0-1.042.37-1.897 1.029-2.565-.103-.31-.446-1.213.098-2.527 0 0 .84-.26 2.75 1.01.798-.221 1.649-.331 2.5-.335.85.004 1.702.114 2.5.335 1.908-1.27 2.748-1.01 2.748-1.01.543 1.314.2 2.217.1 2.527.66.668 1.03 1.523 1.03 2.565 0 3.028-3.535 4.32-6.923 4.706.43.372.823 1.102.823 2.222v3.28c0 .319.22.69.825.577C20.565 21.795 24 17.301 24 12 24 5.373 18.627 0 12 0Z"/>
+    </svg>
+</a>
+    </div>
+  </div>
+</div>
+
+    <section class="glass-card content-card" role="region" aria-labelledby="content-title">
+      <nav class="nav" role="tablist" aria-label="Portfolio sections">
+        <ul class="nav-list">
+          <li class="nav-item active" role="tab" aria-selected="true" aria-controls="projects" tabindex="0"
+            data-tab="projects">Projects</li>
+          <li class="nav-item" role="tab" aria-selected="false" aria-controls="contribution" tabindex="0"
+            data-tab="contribution">Contributions</li>
+          <li class="nav-item" role="tab" aria-selected="false" aria-controls="education" tabindex="0"
+            data-tab="education">Education</li>
+
+          <li class="nav-item" role="tab" aria-selected="false" aria-controls="more" tabindex="0" data-tab="more">More
+          </li>
+        </ul>
+      </nav>
+
+      <div id="content-display" class="content-display">
+        <div id="projects" class="tab-content active" role="tabpanel" aria-labelledby="projects">
+
+
+          <div class="projects-grid">
+            <div class="project-card glass-card">
+              <img src="/image_2.png" alt="Project 1 screenshot" class="project-image">
+              <div class="project-info">
+                <h3 class="project-title">Construction Site Safety Detection</h3>
+                <p class="project-description">Detecting safety gear and machinery using advanced Deep Learning.</p>
+
+                <div class="project-buttons">
+                  <a href="https://github.com/HasnatHridoy/construction-safety-equipment-detection" class="btn-github">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                    </svg>
+                    GitHub
+                  </a>
+                  <a href="https://hasnathridoy.github.io/construction-safety-equipment-detection/" class="btn-demo">Demo</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="project-card glass-card">
+              <img src="image_3.png" alt="Project 1 screenshot" class="project-image">
+              <div class="project-info">
+                <h3 class="project-title">Bangla Summarization: Small SOTA LLMs Eval</h3>
+                <p class="project-description">Fine tuned 5 SOTA models for comparing their performance on Bangla text
+                  summarization.</p>
+
+                <div class="project-buttons">
+                  <a href="https://github.com/HasnatHridoy/Bangla-summarization-test-on-various-SOTA-model" class="btn-github">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                    </svg>
+                    GitHub
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="project-card glass-card">
+              <img src="image_4.jpg" alt="Project 1 screenshot" class="project-image">
+              <div class="project-info">
+                <h3 class="project-title">Cattle Weight AI</h3>
+                <p class="project-description">Cattle Weight Estimation (70% Accuracy) via 2D Image Analysis.</p>
+
+                <div class="project-buttons">
+                  <a href="https://github.com/HasnatHridoy/cattle-weight-ai" class="btn-github">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                    </svg>
+                    GitHub
+                  </a>
+                  <a href="https://ai-cattle-weight.streamlit.app/" class="btn-demo">Demo</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="project-card glass-card">
+              <img src="image_5.jpg" alt="Project 1 screenshot" class="project-image">
+              <div class="project-info">
+                <h3 class="project-title">BD Antibiotic Drug Market Analysis-2025
+                </h3>
+                <p class="project-description">Overview of the 2025 Antibiotics Drug Market of Bangladesh</p>
+
+                <div class="project-buttons">
+                  <a href="https://github.com/HasnatHridoy/BD-antibiotic-drug-market-analysis" class="btn-github">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                    </svg>
+                    GitHub
+                  </a>
+                  <a href="https://public.tableau.com/app/profile/hasnat.hriody/viz/AnOverviewofBangladeshsAntibioticMarketandCommonAntibioticPriceAnalysis_/Dashboard1" class="btn-demo">Dashboard</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="contribution" class="tab-content" role="tabpanel" aria-labelledby="contribution">
+
+          <div class="contributions-grid">
+            <div class="contribution-card glass-card">
+              <img src="image_6.png" alt="Contribution 1 screenshot" class="contribution-image">
+              <div class="contribution-info">
+                <h3 class="contribution-title">Google Colab Selenium
+                </h3>
+                <p class="contribution-description">Added support for Kaggle Notebook.</p>
+                <div class="contribution-buttons">
+                  <a href="https://github.com/jpjacobpadilla/Google-Colab-Selenium/" class="btn-github">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                    </svg>
+                    GitHub
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="contribution-card glass-card">
+              <img src="image_7.png" alt="Contribution 2 screenshot" class="contribution-image">
+              <div class="contribution-info">
+                <h3 class="contribution-title">Python Cheatsheet</h3>
+                <p class="contribution-description">Added 'getattr' uses</p>
+                <div class="contribution-buttons">
+                  <a href="https://github.com/labex-labs/python-cheatsheet" class="btn-github">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                    </svg>
+                    GitHub
+                  </a>
+                </div>
+              </div>
+            </div>
+
+
+
+
+
+
+          </div>
+        </div>
+
+        <div id="education" class="tab-content" role="tabpanel" aria-labelledby="education">
+
+
+          <div class="education-content-wrapper">
+            <div class="education-timeline">
+              <div class="education-entry">
+                <span class="education-year">2023 – 2025</span>
+                <h3 class="education-degree">M.Sc. in Software Engineering</h3>
+                <p class="education-institution">Daffodil International University<br>CGPA: 3.92/4.00</p>
+              </div>
+
+              <div class="education-entry">
+                <span class="education-year">2018 – 2022</span>
+                <h3 class="education-degree">B.Sc. in Physics</h3>
+                <p class="education-institution">National University</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div id="more" class="tab-content" role="tabpanel" aria-labelledby="more">
+          <h2 class="section-title">About Me</h2>
+          <div class="content-placeholder-abm">
+            <p>Hi there! I'm <b>Hasnat</b>—feel free to call me <b>Hridoy</b>.<br>
+
+I’m a developer focused on Computer Vision and LLMs. Besides that, I enjoy designing interfaces (UI) and tweaking Android custom ROMs as a hobby.
+<br>
+Outside of the tech world, I’m a huge foodie :-D who loves trying new recipes.</p>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <footer class="footer" aria-label="Footer">
+      <p><br>© 2025 Hasnat Hridoy. All Rights Reserved.</p>
+    </footer>
+  </main>
+
+  <script>
+    (function () {
+      const canvas = document.getElementById('particles');
+      const ctx = canvas.getContext('2d');
+      let particles = [];
+      const particleCount = window.innerWidth < 768 ? 60 : 120;
+
+      const resize = () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      };
+
+      class Particle {
+        constructor() {
+          this.reset();
+        }
+        reset() {
+          this.x = Math.random() * canvas.width;
+          this.y = Math.random() * canvas.height;
+          this.size = Math.random() * 2 + 0.5;
+          this.speedX = (Math.random() - 0.5) * 0.5;
+          this.speedY = (Math.random() - 0.5) * 0.5;
+        }
+        update() {
+          this.x += this.speedX;
+          this.y += this.speedY;
+
+          if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+          if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+        }
+        draw() {
+          ctx.fillStyle = 'rgba(255,255,255,0.8)';
+          ctx.shadowBlur = 8;
+          ctx.shadowColor = '#fff';
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+
+      const init = () => {
+        particles = [];
+        for (let i = 0; i < particleCount; i++) {
+          particles.push(new Particle());
+        }
+      };
+
+      const animate = () => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => {
+          p.update();
+          p.draw();
+        });
+        requestAnimationFrame(animate);
+      };
+
+      window.addEventListener('resize', () => {
+        resize();
+        init();
+      });
+
+      resize();
+      init();
+      animate();
+    })();
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const navItems = document.querySelectorAll('.nav-item');
+      const contentDisplay = document.getElementById('content-display');
+
+      const switchTab = (targetTab) => {
+        navItems.forEach(item => {
+          const isActive = item.getAttribute('data-tab') === targetTab;
+          item.classList.toggle('active', isActive);
+          item.setAttribute('aria-selected', isActive);
+        });
+
+        document.querySelectorAll('.tab-content').forEach(content => {
+          content.classList.toggle('active', content.id === targetTab);
+        });
+
+        contentDisplay.scrollTop = 0;
+      };
+
+      navItems.forEach(item => {
+        const activate = () => switchTab(item.getAttribute('data-tab'));
+
+        item.addEventListener('click', activate);
+        item.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            activate();
+          }
+        });
+      });
+
+      document.querySelector('.nav-list').addEventListener('keydown', (e) => {
+        const current = document.activeElement;
+        if (!current.classList.contains('nav-item')) return;
+
+        let next;
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+          next = current.nextElementSibling || navItems[0];
+        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+          next = current.previousElementSibling || navItems[navItems.length - 1];
+        }
+
+        if (next) {
+          next.focus();
+          next.click();
+        }
+      });
+    });
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const btn = document.querySelector('.contact-btn');
+      if (!btn) return;
+
+      setTimeout(() => {
+        btn.classList.add('glaze-animate');
+
+        const onAnimEnd = (e) => {
+          if (e.animationName === 'glaze') {
+            btn.classList.remove('glaze-animate');
+            btn.removeEventListener('animationend', onAnimEnd);
+          }
+        };
+
+        btn.addEventListener('animationend', onAnimEnd);
+      }, 300);
+    });
+
+    const contactBtn = document.querySelector('.contact-btn');
+  const overlay = document.getElementById('contactOverlay');
+  const closeBtn = document.getElementById('contactClose');
+
+  contactBtn.addEventListener('click', () => {
+    overlay.classList.add('active');
+  });
+
+  closeBtn.addEventListener('click', () => {
+    overlay.classList.remove('active');
+  });
+
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) {
+      overlay.classList.remove('active');
+    }
+  });
+  </script>
+</body>
+
+</html>
